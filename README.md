@@ -6,6 +6,8 @@
 
 Multimonth View is an open-source addon designed to enhance the Thunderbird calendar experience. It allows users to display multiple months in a single calendar view, making it easier to plan and visualize events over a longer period. This addon is particularly useful for students, enabling them to schedule their entire school or university year efficiently. It is compatible with Thunderbird 115 and is inspired by the [Year View addon](https://github.com/fabrixxm/Year-View), which is only compatible with older versions of Thunderbird and is not updated anymore.
 
+![Screenshot of Multimonth View](screenshots/full_year.png "Multimonth View Screenshot")
+
 ## Features
 
 - **Multiple Months Display**: View several months at once within the Thunderbird calendar. This feature is perfect for long-term planning and getting a comprehensive overview of your schedule.
@@ -48,4 +50,4 @@ Contributions to Multimonth View are welcome! If you're interested in contributi
 
 ## Contact Information
 
-For support or any questions regarding the Multimonth View addon, please [open an issue](https://github.com/your-github-repo/issues) on the GitHub repository.
+For support or any questions regarding the Multimonth View addon, please [open an issue](https://github.com/gilgaTheDev/multimonth-view-addon/issues) on the GitHub repository.

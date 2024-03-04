@@ -19,7 +19,8 @@ function createTopRow() {
   // Create an empty cell for the first column in the top row
   const emptyCell = document.createElement('div');
   emptyCell.id = 'top-row-empty-cell';
-  emptyCell.innerHTML = 'Mo.&nbsp;';
+  emptyCell.textContent = 'Mo. ';
+  emptyCell.style.whiteSpace = 'pre'; // This CSS property will preserve white spaces
   topRowEl.appendChild(emptyCell);
 
   // Array of weekday abbreviations
@@ -123,7 +124,7 @@ function createMonthRow(calendarEl, monthName, monthNumber, totalDays, year, tod
 function createDayCells(year, today, first_month=0, monthRange=12) {
   console.log("Creating the cells: ", year, today, first_month, monthRange);
   const calendarEl = document.getElementById('calendar');
-  calendarEl.innerHTML = ''; // Clear existing calendar content
+  calendarEl.textContent = ''; // Clear existing calendar content
 
   for (let i = 0; i < monthRange; i++) {
     let monthIndex = (first_month + i) % 12;
@@ -360,7 +361,7 @@ function setYearSelectorValues(first_month, monthRange, startYear) {
 
 function populateCalendarList(calendarDetails) {
   const calendarList = document.getElementById('calendar-list');
-  calendarList.innerHTML = ''; // Clear existing list items
+  calendarList.textContent = ''; // Clear existing list items
 
   calendarDetails.forEach(detail => {
     const listItem = document.createElement('li');
@@ -540,7 +541,11 @@ function displayCalendarEvents() {
         popup.setAttribute('data-start-date', formattedStartDate);
         popup.style.display = 'none'; // Initially hidden
         // Positioning now handled by JavaScript
-        popup.innerHTML = `<strong>${formattedStartDate}</strong><ul></ul>`;
+        const strongElement = document.createElement('strong');
+        strongElement.textContent = formattedStartDate;
+        const ulElement = document.createElement('ul');
+        popup.appendChild(strongElement);
+        popup.appendChild(ulElement);
         // Append the popup inside the div with ID 'calendar' as the last child
         const calendarDiv = document.getElementById('calendar');
         calendarDiv.appendChild(popup);
@@ -558,9 +563,9 @@ function displayCalendarEvents() {
       if (formattedEndTime) {
           contentString += ` / ${formattedEndTime}`;
       }
-      li.innerHTML = contentString;
-      li.style.display = isVisible ? '' : 'none';
+      li.textContent = contentString;
       ul.appendChild(li);
+      li.style.display = isVisible ? '' : 'none';
     }
   });
 }

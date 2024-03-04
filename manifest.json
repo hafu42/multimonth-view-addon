@@ -3,10 +3,11 @@
   "name": "Multimonth view",
   "author": "Gilga the dev",
   "description": "Viewing of multimonth calendar",
-  "version": "2.4.3",
+  "version": "2.4.4",
   "applications": {
     "gecko": {
-      "id": ""
+      "id": "{7e203ac4-7a08-4e62-a50d-2d2ce058c546}",
+      "strict_max_version": "115.*"
     }
   },
 
