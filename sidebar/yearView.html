@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Year View Calendar</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="side-column" class="side-column">
+      <div id="year-selector">
+        <button id="prev-year" title="Previous Year" data-month-change="-12"><<</button>
+        <button id="prev-month" title="Previous Month" data-month-change="-1"><</button>
+        <span id="start-month">Jan</span>
+        <span id="start-year">2023</span>
+        -
+        <span id="end-month">Dec</span>
+        <span id="end-year">2023</span>
+        <button id="next-month" title="Next Month" data-month-change="1">></button>
+        <button id="next-year" title="Next Year" data-month-change="12">>></button>
+      </div>
+      <button id="today-button">Today</button>
+      <ul id="calendar-list"></ul>
+      <div id="month-range-selector">
+        Select Month Range
+        <input type="range" id="month-range-slider" min="3" max="12" value="12" step="1" list="tickmarks">
+        <datalist id="tickmarks">
+          <option value="3" label="3"></option>
+          <option value="4" label="4"></option>
+          <option value="5" label="5"></option>
+          <option value="6" label="6"></option>
+          <option value="7" label="7"></option>
+          <option value="8" label="8"></option>
+          <option value="9" label="9"></option>
+          <option value="10" label="10"></option>
+          <option value="11" label="11"></option>
+          <option value="12" label="12"></option>
+        </datalist>
+      </div>
+    </div>
+    <div id="calendar-container">
+        <div id="calendar" class="year-calendar">
+            <!-- Dynamically generated months and days will go here -->
+        </div>
+    </div>
+
+    <script src="calYearGridPrinter.js"></script>
+</body>
+</html>

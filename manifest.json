@@ -1,0 +1,119 @@
+{
+  "manifest_version": 2,
+  "name": "Multimonth view",
+  "author": "Gilga the dev",
+  "description": "Viewing of multimonth calendar",
+  "version": "2.4.3",
+  "applications": {
+    "gecko": {
+      "id": ""
+    }
+  },
+
+  "icons": {
+    "32": "addon.svg"
+  },
+
+  "permissions": [
+    "calendar",
+    "messaging",
+    "storage"
+  ],
+
+  "calendar_provider": {
+    "capabilities": {
+      "timezones": {
+        "floating": false,
+        "UTC": true
+      },
+      "attachments": false,
+      "priority": false,
+      "privacy": ["default", "public", "private"],
+      "categories": {
+        "count": 3
+      },
+      "alarms": {
+        "count": 5,
+        "actions": ["display", "email"]
+      },
+      "tasks": true,
+      "events": true,
+      "remove_modes": ["unsubscribe"],
+      "requires_network": true,
+      "minimum_refresh_interval": 30
+    }
+  },
+
+  "calendar_item_action": {
+    "default_icon": "addon.png",
+    "default_popup": "content/calendar-item-action.html",
+    "default_title": "Calendar Item Action"
+  },
+
+  "background": {
+    "scripts": [
+      "background.js"
+    ]
+  },
+
+  "browser_action": {
+    "default_icon": "icons/icon.png",
+    "default_title": "Open Multimonth"
+  },
+
+  "experiment_apis": {
+    "calendar_calendars": {
+      "schema": "experiments/calendar/schema/calendar-calendars.json",
+      "parent": {
+        "scopes": ["addon_parent"],
+        "script": "experiments/calendar/parent/ext-calendar-calendars.js",
+        "paths": [
+          ["calendar", "calendars"]
+        ]
+      }
+    },
+    "calendar_items": {
+      "schema": "experiments/calendar/schema/calendar-items.json",
+      "parent": {
+        "scopes": ["addon_parent"],
+        "script": "experiments/calendar/parent/ext-calendar-items.js",
+        "paths": [
+          ["calendar", "items"]
+        ]
+      }
+    },
+    "calendar_provider": {
+      "schema": "experiments/calendar/schema/calendar-provider.json",
+      "parent": {
+        "scopes": ["addon_parent"],
+        "script": "experiments/calendar/parent/ext-calendar-provider.js",
+        "events": ["startup"],
+        "paths": [
+          ["calendar", "provider"]
+        ]
+      }
+    },
+    "calendarItemAction": {
+      "schema": "experiments/calendar/schema/calendarItemAction.json",
+      "parent": {
+        "scopes": ["addon_parent"],
+        "script": "experiments/calendar/parent/ext-calendarItemAction.js",
+        "events": ["startup"],
+        "paths": [
+          ["calendarItemAction"]
+        ]
+      }
+    },
+    "calendarItemDetails": {
+      "schema": "experiments/calendar/schema/calendarItemDetails.json",
+      "parent": {
+        "scopes": ["addon_parent"],
+        "script": "experiments/calendar/parent/ext-calendarItemDetails.js",
+        "events": ["startup"],
+        "paths": [
+          ["calendarItemDetails"]
+        ]
+      }
+    }
+  }
+}

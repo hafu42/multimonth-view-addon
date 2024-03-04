@@ -1,0 +1,200 @@
+#calendar-list {
+  list-style-type: none; /* Removes bullets */
+  padding-left: 0; /* Removes indentation */
+}
+
+#calendar, #top-row-container {
+  display: grid;
+  grid-template-columns: repeat(38, 1fr); /* Adjusted for 38 cells */
+  gap: 0; /* Adjust if you want space between cells */
+  width: 100%; /* Ensure the container fits within its parent without overflow */
+  box-sizing: border-box; /* Include padding and border in the element's total width */
+  font-size: 0.75rem; /* Use smaller font size to ensure text fits */
+}
+
+
+
+
+.weekday-header, .day, .empty-cell {
+  text-align: center;
+  padding: 5px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  overflow: hidden; /* Prevents content from overflowing */
+}
+
+.weekday-header {
+  height: auto;
+}
+
+
+.weekday-header {
+  background-color: #eee; /* Slightly different background for headers */
+}
+
+.empty-cell {
+  background-color: rgba(255, 255, 255, 0.1); /* Almost transparent background for empty cells */
+  border: none; /* No border for empty cells */
+}
+
+.day {
+  padding: 0;
+  display: flex; /* Use Flexbox */
+  flex-direction: column; /* Stack children vertically */
+  align-items: center; /* Center-align items for aesthetic purposes */
+  justify-content: start; /* Align items to the start of the container */
+  background-color: #ecebeb; /* White background for day cells */
+  font-size: 0.75rem; /* Smaller font size for the day number */
+  position: relative; /* Position relative to allow absolute positioning of child elements */
+  border: 1px solid #ccc; /* Border to match the design */
+  /* Other styles as needed */
+}
+
+.day-number {
+  margin: 0;
+/*   top: 0;
+  right: 0;
+  left: 0; */
+  background-color: #ddd;
+  font-size: 0.35rem;
+  box-sizing: border-box;
+  text-align: right;
+  width: 100%; /* Ensure it takes up the full width */
+}
+
+.event-ribbon {
+  width: 100%; /* Take up the full width */
+  font-size: 0.30rem; /* Adjust the size as needed */
+  white-space: nowrap; /* Keep text in a single line */
+  overflow: hidden; /* Prevent text from overflowing */
+  text-overflow: ellipsis; /* Use ellipsis for overflow text */
+  background-color: #ddd; /* Background color for visibility, adjust as needed */
+  box-sizing: border-box; /* Include padding and border in the element's total width */
+  padding: 2px 0; /* Add some padding for spacing */
+  text-align: center; /* Center the text */
+}
+
+#calendar-container {
+  display: flex; /* Use flexbox to layout the rows */
+  flex-direction: column; /* Stack children vertically */
+  height: 100vh; /* Full height of the viewport */
+  box-sizing: border-box; /* Include padding and border in the element's total height */
+  margin-left: 210px; /* Adjust based on side column width */
+  position: relative; /* Ensure it acts as the positioning context for popups */
+}
+
+
+.month-row {
+  flex: 1; /* Distribute available space evenly among month rows */
+  height: calc((100vh - 50px) / var(--month-range)); /* Use CSS variable */
+  display: grid;
+  grid-template-columns: repeat(38, 1fr); /* Adjusted for 38 cells */
+  gap: 0; /* Adjust if you want space between cells */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+.january {
+  border-top: 1px dashed black;
+}
+
+.weekend {
+  background-color: #F6FFE1; /* Example color for the ribbon in weekend cells */
+}
+.weekend .day-number {
+  background-color: #E9F7C7; /* Example color for the ribbon in weekend cells */
+}
+
+.today {
+  background-color: #fff86d; /* Example color for today's cell */
+}
+
+.today .day-number {
+  background-color: #d8d36e; /* Example color for today's ribbon */
+}
+
+/* Your existing styles for .day, .day-number, etc. */
+
+.side-column {
+  width: 200px; /* Adjust as needed */
+  float: left;
+  padding: 10px; /* Add padding to ensure content does not touch the edges */
+  box-sizing: border-box; /* Include padding in the element's total width */
+}
+
+#year-selector {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box; /* Include padding in the element's total width */
+}
+
+#year-selector button, #year-selector span {
+  flex: 1; /* Allow elements to grow and fill the space */
+  text-align: center; /* Center the text for spans */
+  min-width: 0; /* Allow elements to shrink below their intrinsic width */
+}
+
+#year-selector span {
+  margin: 0px 0px; /* Reduce margin to make the text closer */
+  padding: 0px 1px;
+  font-size: 0.50rem; /* Adjust font size to ensure it fits */
+}
+
+#year-selector button {
+  background-color: #f0f0f0;
+  border: none;
+  cursor: pointer;
+  padding: 7px 0px; /* Increase vertical padding for taller buttons and remove horizontal padding */
+  font-size: 0.375rem; /* Keep the adjusted font size */
+  max-width: 10px; /* Further reduce max-width to make buttons narrower */
+  border: 1px solid #ccc; /* Faint border added */
+}
+
+#today-button {
+  font-size: 0.50rem; /* Adjust based on the original font size, making it twice smaller */
+  padding: 1px 2px; /* Adjust based on the original padding, making it twice smaller */
+  width: auto; /* Adjust if necessary */
+  min-width: 40px; /* Adjust based on the original min-width, making it twice smaller */
+  height: auto; /* Adjust if necessary */
+  min-height: 5px; /* Adjust based on the original min-height, making it twice smaller */
+}
+
+.event-popup {
+  background-color: rgba(0, 0, 0, 0.7); /* Black with transparency */
+  color: white;
+  padding: 10px;
+  z-index: 100; /* Ensure it's above other content */
+  display: none; /* Initially hidden */
+  max-width: 200px; /* Maximum width to prevent it from being too wide */
+  word-wrap: break-word; /* Ensure long words do not overflow */
+  font-size: 0.8rem; /* Adjust font size as needed */
+  pointer-events: none; /* Prevents the popup from interfering with mouse events */
+}
+
+.day:hover .event-popup {
+  display: block; /* Show the popup on hover */
+}
+
+#month-range-selector {
+  font-size: 0.50rem; /* Adjust font size to ensure it fits */
+  margin-top: 20px; /* Adjust as needed to position under the calendar list */
+}
+datalist {
+  margin: 0;
+  margin-left: 7px;
+  display: flex;
+  width: 140px;
+  justify-content: space-between;
+  font-size: 0.30rem; /* Adjust font size to ensure it fits */
+}
+
+option {
+  padding: 0;
+}
+
+input[type="range"] {
+  width: 150px;
+  margin: 0;
+}
+body, html {
+  overflow-x: hidden; /* Prevent horizontal scrollbar */
+}
