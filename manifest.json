@@ -16,40 +16,8 @@
   },
 
   "permissions": [
-    "calendar",
-    "messaging",
     "storage"
   ],
-
-  "calendar_provider": {
-    "capabilities": {
-      "timezones": {
-        "floating": false,
-        "UTC": true
-      },
-      "attachments": false,
-      "priority": false,
-      "privacy": ["default", "public", "private"],
-      "categories": {
-        "count": 3
-      },
-      "alarms": {
-        "count": 5,
-        "actions": ["display", "email"]
-      },
-      "tasks": true,
-      "events": true,
-      "remove_modes": ["unsubscribe"],
-      "requires_network": true,
-      "minimum_refresh_interval": 30
-    }
-  },
-
-  "calendar_item_action": {
-    "default_icon": "addon.png",
-    "default_popup": "content/calendar-item-action.html",
-    "default_title": "Calendar Item Action"
-  },
 
   "background": {
     "scripts": [

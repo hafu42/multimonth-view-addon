@@ -422,7 +422,6 @@ function toggleCalendarEvents(calendarId, isVisible) {
 
 document.addEventListener('DOMContentLoaded', () => {
   // Notify the background script that the content script is ready
-  console.log("DOM fully loaded. Notifying background script...");
   browser.runtime.sendMessage({ action: "contentScriptReady" });
 
 
@@ -483,7 +482,6 @@ function displayCalendarEvents() {
     console.error("StoredEvents is null or undefined");
     return;
   }
-  console.log("Displaying calendar events");
   events.forEach(event => {
     const calendarListItem = document.querySelector(`li[data-id="${event.calendarId}"]`);
     if (!calendarListItem) {

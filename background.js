@@ -134,11 +134,7 @@ function onContentScriptReady() {
 
     Promise.all([calendarDetailsPromise, eventsPromise, userStoragePromise]).then(([calendarDetails, events, userStorageResult]) => {
       let userStorage = userStorageResult.UserStorage || {};
-      console.log("Sending combined calendar data:", {
-        calendarDetails: calendarDetails,
-        events: events,
-        userStorage: userStorage
-      });
+
       messenger.runtime.sendMessage({
         action: "getCalendarDataCombined",
         calendarDetails: calendarDetails,

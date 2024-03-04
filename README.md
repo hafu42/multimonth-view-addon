@@ -4,13 +4,13 @@
 
 ## Description
 
-Multimonth View is an open-source addon designed to enhance the Thunderbird calendar experience. It allows users to display multiple months in a single calendar view, making it easier to plan and visualize events over a longer period. This addon is particularly useful for students, enabling them to schedule their entire school or university year efficiently. It is compatible with Thunderbird 115 and is inspired by the [Year View addon](https://github.com/fabrixxm/Year-View), which is only compatible with older versions of Thunderbird and is not updated anymore.
+Multimonth View is an open-source addon designed to enhance the Thunderbird calendar "Multiweeks view" (limited to 6 weeks max). It allows users to display multiple months, from 3 months to a full year, in a single calendar view, making it easier to plan and visualize events over a longer period. This addon is particularly useful for students, enabling them to schedule their entire school or university year efficiently. It is compatible with Thunderbird 115 and is inspired by the [Year View addon](https://github.com/fabrixxm/Year-View), which is only compatible with older versions of Thunderbird and is not updated anymore.
 
 ![Screenshot of Multimonth View](screenshots/full_year.png "Multimonth View Screenshot")
 
 ## Features
 
-- **Multiple Months Display**: View several months at once within the Thunderbird calendar. This feature is perfect for long-term planning and getting a comprehensive overview of your schedule.
+- **Multiple Months Display**: View several months (from 3 months to one year) at once within the Thunderbird calendar. This feature is perfect for long-term planning and getting a comprehensive overview of your schedule.
 
 ## Installation Instructions
 
@@ -29,7 +29,7 @@ After installing the Multimonth View addon, you can access its features as follo
 2. By default, Multimonth View will display a 12-month view of the current year. 
 3. You can adjust the range of months displayed using the month range selector available within the tab.
 4. Navigate through the calendar by one month or one year using the buttons located at the top of the Multimonth View tab.
-5. To quickly return to the current date range, click on the "Today" date button located under these navigation buttons. This will automatically adjust the view to the range around today's date.
+5. To quickly return to the current date range, click on the button with the date of today on it located under these navigation buttons. This will automatically adjust the view to the range around today's date.
 
 
 ## Experimental Status
