@@ -27,7 +27,8 @@
 
   "browser_action": {
     "default_icon": "icons/icon.png",
-    "default_title": "Open Multimonth"
+    "default_title": "Open Multimonth",
+    "allowed_spaces": ["calendar"]
   },
 
   "experiment_apis": {
