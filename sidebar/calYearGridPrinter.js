@@ -507,64 +507,83 @@ function displayCalendarEvents() {
     const calendarInfo = getCalendarInfoById(event.calendarId);
     const calendarEl = document.getElementById('calendar');
     const formattedStartDate = `${year}-${formattedStartMonth}-${formattedStartDay}`;
-    const dayCell = calendarEl.querySelector(`.day[data-date="${formattedStartDate}"]`);
+    const formattedEndDate = `${year}-${formattedEndMonth}-${formattedEndDay}`;
 
-    if (dayCell) {
-      const eventRibbon = document.createElement('div');
-      eventRibbon.className = 'event-ribbon';
-      eventRibbon.textContent = event.title;
-      eventRibbon.style.backgroundColor = calendarColor;
-      eventRibbon.style.display = isVisible ? '' : 'none';
-      eventRibbon.setAttribute('data-title', event.title);
-      eventRibbon.setAttribute('data-description', event.description);
-      eventRibbon.setAttribute('data-start-date', event.startDate);
-      eventRibbon.setAttribute('data-end-date', event.endDate);
-      eventRibbon.setAttribute('data-formattedStartMonth', formattedStartMonth);
-      eventRibbon.setAttribute('data-formattedStartDay', formattedStartDay);
-      eventRibbon.setAttribute('data-formattedEndMonth', formattedEndMonth);
-      eventRibbon.setAttribute('data-formattedEndDay', formattedEndDay);
-      eventRibbon.setAttribute('data-formatted-start-time', formattedStartTime);
-      eventRibbon.setAttribute('data-formatted-end-time', formattedEndTime);
-      eventRibbon.setAttribute('data-calendar-name', calendarInfo.name); 
-      eventRibbon.setAttribute('data-calendar-id', event.calendarId); // Assign calendar ID to each event ribbon
+    // The following code loops for each day in the period of the event
+    // and add an eventRibbon for each impacted day.
+    var periodDate = new Date(formattedStartDate)
+    const periodEndDate = new Date(formattedEndDate)
+    var isFirstDayOfPeriod = true
+    do {
+      const periodYear = periodDate.getFullYear();
+      const periodMonth = periodDate.toLocaleString('en-US', { month: '2-digit' });
+      const periodDay = periodDate.toLocaleString('en-US', { day: '2-digit' });
+      const formattedPeriodDate = `${periodYear}-${periodMonth}-${periodDay}`;
+      dayCell = calendarEl.querySelector(`.day[data-date="${formattedPeriodDate}"]`);
 
-      dayCell.appendChild(eventRibbon);
+      if (dayCell) {
+        const eventRibbon = document.createElement('div');
+        eventRibbon.className = 'event-ribbon';
+        eventRibbon.textContent = event.title;
+        eventRibbon.style.backgroundColor = calendarColor;
+        eventRibbon.style.display = isVisible ? '' : 'none';
+        eventRibbon.setAttribute('data-title', event.title);
+        eventRibbon.setAttribute('data-description', event.description);
+        eventRibbon.setAttribute('data-start-date', event.startDate);
+        eventRibbon.setAttribute('data-end-date', event.endDate);
+        eventRibbon.setAttribute('data-formattedStartMonth', formattedStartMonth);
+        eventRibbon.setAttribute('data-formattedStartDay', formattedStartDay);
+        eventRibbon.setAttribute('data-formattedEndMonth', formattedEndMonth);
+        eventRibbon.setAttribute('data-formattedEndDay', formattedEndDay);
+        eventRibbon.setAttribute('data-formatted-start-time', formattedStartTime);
+        eventRibbon.setAttribute('data-formatted-end-time', formattedEndTime);
+        eventRibbon.setAttribute('data-calendar-name', calendarInfo.name); 
+        eventRibbon.setAttribute('data-calendar-id', event.calendarId); // Assign calendar ID to each event ribbon
 
-      // Check if popup already exists
-      let popup = document.querySelector(`div.event-popup[data-start-date="${formattedStartDate}"]`);
-      if (!popup) {
-        // If it doesn't exist, create it
-        popup = document.createElement('div');
-        popup.className = 'event-popup';
-        popup.setAttribute('data-start-date', formattedStartDate);
-        popup.style.display = 'none'; // Initially hidden
-        // Positioning now handled by JavaScript
-        const strongElement = document.createElement('strong');
-        strongElement.textContent = formattedStartDate;
-        const ulElement = document.createElement('ul');
-        popup.appendChild(strongElement);
-        popup.appendChild(ulElement);
-        // Append the popup inside the div with ID 'calendar' as the last child
-        const calendarDiv = document.getElementById('calendar');
-        calendarDiv.appendChild(popup);
-      }
-      
-      // Whether the popup was just created or already existed, append the event details
-      const ul = popup.querySelector('ul');
-      const li = document.createElement('li');
-      li.setAttribute('data-calendar-id', event.calendarId);
-      let contentString = `${event.title}`;
-      if (event.description) {
-        contentString += `: ${event.description}`;
-      }
-      contentString += `. ${formattedStartTime}`;
-      if (formattedEndTime) {
-          contentString += ` / ${formattedEndTime}`;
-      }
-      li.textContent = contentString;
-      ul.appendChild(li);
-      li.style.display = isVisible ? '' : 'none';
-    }
+        dayCell.appendChild(eventRibbon);
+
+        if (isFirstDayOfPeriod) {
+          // Check if popup already exists
+          let popup = document.querySelector(`div.event-popup[data-start-date="${formattedStartDate}"]`);
+          if (!popup) {
+            // If it doesn't exist, create it
+            popup = document.createElement('div');
+            popup.className = 'event-popup';
+            popup.setAttribute('data-start-date', formattedStartDate);
+            popup.style.display = 'none'; // Initially hidden
+            // Positioning now handled by JavaScript
+            const strongElement = document.createElement('strong');
+            strongElement.textContent = formattedStartDate;
+            const ulElement = document.createElement('ul');
+            popup.appendChild(strongElement);
+            popup.appendChild(ulElement);
+            // Append the popup inside the div with ID 'calendar' as the last child
+            const calendarDiv = document.getElementById('calendar');
+            calendarDiv.appendChild(popup);
+          }
+
+          // Whether the popup was just created or already existed, append the event details
+          const ul = popup.querySelector('ul');
+          const li = document.createElement('li');
+          li.setAttribute('data-calendar-id', event.calendarId);
+          let contentString = `${event.title}`;
+          if (event.description) {
+            contentString += `: ${event.description}`;
+          }
+          contentString += `. ${formattedStartTime}`;
+          if (formattedEndTime) {
+              contentString += ` / ${formattedEndTime}`;
+          }
+          li.textContent = contentString;
+          ul.appendChild(li);
+          li.style.display = isVisible ? '' : 'none';
+        } // end of if (first)
+      } // end of if (dayCell)
+
+      periodDate.setDate(periodDate.getDate() + 1);
+      isFirstDayOfPeriod = false;
+    } while (periodDate < periodEndDate);
+
   });
 }
 function applyStoredCalendarVisibilityStates(calendarVisibilityStates) {
